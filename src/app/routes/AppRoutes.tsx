@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from '../../pages/Auth/Login';
-import { REGISTER, LOGIN, COUNTRY, DASHBOARD } from '../utils/routes';
-import Register from '../../pages/Auth/Register';
+import Login from '@pages/Auth/Login';
+import { REGISTER, LOGIN, COUNTRY, DASHBOARD } from '@utils/routes';
+import Register from '@pages/Auth/Register';
 
 function AppRoutes() {
       const isAuthenticated = true;
