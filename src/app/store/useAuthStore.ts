@@ -31,7 +31,7 @@ export const useAuthStore = create<State & Action>((set) => ({
         isAuthenticated: isDefaultUser,
         isInitialized: true 
       });
-    } catch (error) {
+    } catch {
       set({ 
         isAuthenticated: false,
         isInitialized: true 
