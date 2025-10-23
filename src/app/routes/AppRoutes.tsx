@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Login from '@pages/Auth/Login';
-import { REGISTER, LOGIN, COUNTRY, DASHBOARD } from '@utils/routes';
+import { REGISTER, LOGIN, COUNTRY, DASHBOARD } from '@utils/routesUrl';
 import Register from '@pages/Auth/Register';
 
 function AppRoutes() {

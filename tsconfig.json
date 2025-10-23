@@ -22,8 +22,10 @@
     "baseUrl": "./src",
   
     "paths": {
-      "@assets/*": ["./public/assets/*"],
+      "@assets/*": ["./public/assets/images/*"],
       "@utils/*": ["./app/utils/*"],
+      "@services/*": ["./app/services/*"],
+      "@apis/*": ["./app/api/*"],
       "@components/*": ["./components/*"],
       "@hooks/*": ["./app/hooks/*"],
       "@pages/*": ["./pages/*"],

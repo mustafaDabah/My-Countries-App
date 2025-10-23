@@ -1,21 +1,46 @@
 import Button from '@components/ui/Button/Button'
 import { Input } from '@components/ui/Input/Input'
-import { REGISTER } from '@utils/routes'
+import useAuth from '@hooks/useAuth'
+import { REGISTER } from '@utils/routesUrl'
+import { validateLoginForm } from '@utils/validationForms'
 import { Link } from 'react-router-dom'
+import { toast } from 'sonner'
 
 function Login() {
+  const { loginMutation } = useAuth();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    const validation = validateLoginForm(formData);
+
+    if (!validation.isValid) {
+      toast.error(validation.errors.join('\n'));
+      return;
+    }
+
+    // Submit login
+    loginMutation.mutate({ email, password });
+  }
+
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-background via-background to-muted/20">
       <div className="w-full max-w-md animate-fade-in">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent p-3 mb-4">
-          </div>
+
           <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
           <p className="text-muted-foreground">Sign in to explore the world</p>
         </div>
 
         <div className="rounded-xl border bg-card p-8 shadow-lg">
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="email">Email</label>
               <Input
@@ -23,6 +48,7 @@ function Login() {
                 type="email"
                 placeholder="eve.holt@reqres.in"
                 required
+                name='email'
               />
             </div>
 
@@ -33,10 +59,12 @@ function Login() {
                 type="password"
                 placeholder="Enter your password"
                 required
+                name='password'
+                autoComplete="current-password"
               />
             </div>
 
-            <Button>Sign In</Button>
+            <Button isLoading={loginMutation.isPending}>Sign In</Button>
           </form>
 
           <div className="mt-6 text-center text-sm">

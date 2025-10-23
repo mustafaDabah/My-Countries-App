@@ -1,20 +1,20 @@
 import Button from '@components/ui/Button/Button'
 import ThemeToggle from '@components/ui/ThemeToggle/ThemeToggle';
 import { Heart, LogOut } from 'lucide-react'
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import newMetricsLogo from '@assets/images/newMetrics.svg'
+import useAuth from '@hooks/useAuth';
 
 function Navbar() {
     const navigate = useNavigate();
+    const { logout } = useAuth();
 
-    const isAuthenticated = true
+    const isAuthenticated = true;
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 <Link to={isAuthenticated ? "/dashboard" : "/"} className="flex items-center gap-2 transition-opacity hover:opacity-80">
-                    <img className='w-2/3' src={newMetricsLogo} alt="new metrics logo" />
+                    <img className='w-2/3' src={'./assets/images/newMetrics.svg'} alt="new metrics logo" />
                 </Link>
 
                 <div className="flex items-center justify-center gap-2">
@@ -29,6 +29,7 @@ function Navbar() {
                             </Button>
                             <Button
                                 variant="ghost"
+                                onClick={logout}
                             >
                                 <LogOut className="h-4 w-4" />
                                 <span className="hidden sm:inline">Logout</span>
