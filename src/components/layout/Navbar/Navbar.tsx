@@ -23,6 +23,7 @@ function Navbar() {
                             <Button
                                 variant="ghost"
                                 onClick={() => navigate('/favorites')}
+                                size='sm'
                             >
                                 <Heart className="h-4 w-4" />
                                 <span className="hidden sm:inline">Favorites</span>
@@ -30,6 +31,7 @@ function Navbar() {
                             <Button
                                 variant="ghost"
                                 onClick={logout}
+                                size='sm'
                             >
                                 <LogOut className="h-4 w-4" />
                                 <span className="hidden sm:inline">Logout</span>

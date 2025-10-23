@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Login from '@pages/Auth/Login';
 import Register from '@pages/Auth/Register';
-import AuthInitializer from '@components/auth/AuthInitializer/AuthInitializer';
+import StateInitializer from '@components/ui/AuthInitializer/StateInitializer';
 import { LOGIN, REGISTER, COUNTRY, DASHBOARD } from '@utils/routesUrl';
 import Dashboard from '@pages/Dashboard/Dashboard';
 import NotFound from '@pages/NotFound/NotFound';
@@ -9,9 +9,7 @@ import ProtectedRoute from './ProtectedRoute';
 
 function AppRoutes() {
   return (
-    <div>
-      <AuthInitializer />
-      
+    <div>      
       <Routes>
         {/* Public routes - redirect to dashboard if authenticated */}
         <Route 
