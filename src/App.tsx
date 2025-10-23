@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Toaster position='top-right' />
+      <Toaster position='top-right' duration={600} />
       <AppRoutes />
     </BrowserRouter>
   )

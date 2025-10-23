@@ -21,7 +21,7 @@ const Button = ({
     font-semibold rounded-[16px] focus:outline-none 
     transition-all duration-150 ease-in
     disabled:opacity-50 disabled:cursor-not-allowed
-    focus:ring-2 focus:ring-offset-2 focus:ring-primary/30 w-full
+     w-full
   `;
 
     // Size variants

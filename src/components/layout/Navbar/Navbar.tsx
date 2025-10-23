@@ -3,15 +3,15 @@ import ThemeToggle from '@components/ui/ThemeToggle/ThemeToggle';
 import { Heart, LogOut } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '@hooks/useAuth';
+import { useAuthStore } from '@store/useAuthStore';
 
 function Navbar() {
-    const navigate = useNavigate();
+    const {isAuthenticated} = useAuthStore();
     const { logout } = useAuth();
-
-    const isAuthenticated = true;
+    const navigate = useNavigate();
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+        <nav className="sticky top-0 z-20 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 <Link to={isAuthenticated ? "/dashboard" : "/"} className="flex items-center gap-2 transition-opacity hover:opacity-80">
                     <img className='w-2/3' src={'./assets/images/newMetrics.svg'} alt="new metrics logo" />

@@ -30,6 +30,7 @@
       "@hooks/*": ["./app/hooks/*"],
       "@pages/*": ["./pages/*"],
       "@store/*": ["./app/store/*"],
+      "@routes/*": ["./app/routes/*"],
     }
   },
   "include": ["src"],

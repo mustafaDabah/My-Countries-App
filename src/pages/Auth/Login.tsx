@@ -25,7 +25,6 @@ function Login() {
       return;
     }
 
-    // Submit login
     loginMutation.mutate({ email, password });
   }
 
@@ -49,6 +48,7 @@ function Login() {
                 placeholder="eve.holt@reqres.in"
                 required
                 name='email'
+                value={'eve.holt@reqres.in'}
               />
             </div>
 
@@ -61,6 +61,7 @@ function Login() {
                 required
                 name='password'
                 autoComplete="current-password"
+                value={'pistol'}
               />
             </div>
 

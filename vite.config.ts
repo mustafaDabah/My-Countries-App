@@ -20,6 +20,7 @@ export default defineConfig({
       '@store': path.resolve(__dirname, "./src/app/store"),
       '@assets': path.resolve(__dirname, "./public/assets"),
       '@services': path.resolve(__dirname, "./src/app/services"),
+      '@routes': path.resolve(__dirname, "./src/app/routes"),
       '@apis': path.resolve(__dirname, "./src/app/api"),
     }
   },

@@ -1,8 +1,9 @@
+import ProtectedRoute from '@routes/ProtectedRoute'
 import React from 'react'
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <ProtectedRoute>Dashboard</ProtectedRoute>
   )
 }
 

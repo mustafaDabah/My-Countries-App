@@ -8,7 +8,7 @@ export const authApi = axios.create({
     baseURL: API_AUTH_URL,
     headers: {
         'Content-Type': 'application/json',
-        'x-api-key': (import.meta as unknown)?.env?.VITE_AUTH_API_KEY ?? '',
+        'x-api-key': import.meta.env.VITE_AUTH_API_KEY,
     },
 });
 
