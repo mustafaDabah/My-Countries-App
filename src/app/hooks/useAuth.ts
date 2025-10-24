@@ -5,10 +5,12 @@ import { DASHBOARD, LOGIN } from '@utils/routesUrl';
 import { toast } from 'sonner';
 import { getAuthErrorMessage } from '@utils/getAuthErrorMessage';
 import { useAuthStore } from '@store/useAuthStore';
+import { useFavoritesStore } from '@store/useFavoritesStore';
 
 function useAuth() {
   const navigate = useNavigate();
   const { setIsAuthenticated } = useAuthStore();
+  const { clearFavorites } = useFavoritesStore();
 
   const authMutationConfig = {
     onSuccess: (data: AuthResponse) => {
@@ -38,6 +40,7 @@ function useAuth() {
   const logout = () => {
     authService.removeToken();
     setIsAuthenticated(false);
+    clearFavorites();
     toast.success('Logged out successfully');
     navigate(LOGIN, { replace: true });
   };
