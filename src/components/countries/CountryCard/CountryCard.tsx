@@ -24,7 +24,7 @@ export const CountryCard = ({ country }: CountryCardProps) => {
                 {/* Country Names */}
                 <div className="space-y-3">
                     {/* Common Name */}
-                    <h3 className="text-2xl font-bold text-card-foreground line-clamp-1 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent line-clamp-1 group-hover:text-accent transition-colors">
                         {country.name.common}
                     </h3>
 
@@ -55,7 +55,7 @@ export const CountryCard = ({ country }: CountryCardProps) => {
 
                 {/* Hover Indicator */}
                 <div className="pt-2">
-                    <div className="w-0 group-hover:w-full h-0.5 bg-primary transition-all duration-300"></div>
+                    <div className="w-0 group-hover:w-full h-0.5 bg-accent transition-all duration-300"></div>
                 </div>
             </div>
         </Link>
