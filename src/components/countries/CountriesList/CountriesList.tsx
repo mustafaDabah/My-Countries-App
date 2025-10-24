@@ -9,7 +9,7 @@ interface CountriesListProps {
 function CountriesList({ countries }: CountriesListProps) {
     return (
         <VList
-            className='overflow-hidden w-full v-list py-1'
+            className='overflow-hidden w-full v-list py-1 scrollbar-custom '
             style={{ height: 490 }}
             count={countries.length}
         >
