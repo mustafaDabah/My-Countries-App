@@ -16,7 +16,7 @@ export const getAuthErrorMessage = (error: unknown): string => {
   }
   
   if (error instanceof Error) {
-    return error?.meesage;
+    return error?.message;
   }
   
   return 'An unexpected error occurred';

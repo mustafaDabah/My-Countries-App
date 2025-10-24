@@ -64,3 +64,11 @@ interface Currency {
   name: string;
   symbol?: string;
 }
+
+interface ImportMetaEnv {
+  readonly VITE_AUTH_API_KEY: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
