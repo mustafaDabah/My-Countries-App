@@ -16,7 +16,7 @@ const CountryDetails: React.FC = () => {
     const isFavorite = useFavoritesStore((s) => s.isFavorite(country?.cca3));
     const toggleFavorite = useFavoritesStore((s) => s.toggleFavorite);
 
-    if (countryQuery.isLoading) return <CountryDetailSkeleton />;
+    if (countryQuery.isLoading) return 
     if (countryQuery.isError) return <div className="container py-8 text-red-500">Failed to load country.</div>;
 
     return (
