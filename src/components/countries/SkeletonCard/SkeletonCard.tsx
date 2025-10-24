@@ -1,6 +1,6 @@
 export const CountryCardSkeleton = () => {
   return (
-    <div className="overflow-hidden rounded-lg border bg-card animate-pulse">
+    <div className="overflow-hidden rounded-lg border bg-card h-40 mb-2 animate-pulse">
       <div className="aspect-video bg-muted" />
       <div className="p-4 space-y-3">
         <div className="h-6 bg-muted rounded w-3/4" />

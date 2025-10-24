@@ -1,5 +1,4 @@
 import { Input } from '@components/ui/Input/Input';
-import { Select } from '@components/ui/Select/Select';
 import { Search } from 'lucide-react';
 
 interface SearchAndFilterProps {
@@ -29,11 +28,18 @@ export const SearchAndFilter = ({
           className="pl-10"
         />
       </div>
-      <Select>
-        {regions.map((item: string) => (
-          <option value={item} key={item}>{item}</option>
+
+      <select
+        value={region}
+        onChange={(e) => onRegionChange(e.target.value)}
+        className="border border-gray-300 rounded-md px-3 py-2 dark:bg-gray-800 dark:text-white"
+      >
+        {regions.map((item) => (
+          <option value={item} key={item}>
+            {item}
+          </option>
         ))}
-      </Select>
+      </select>
     </div>
   );
 };

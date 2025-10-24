@@ -91,12 +91,3 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
-
-/* ---utils classes-- */
-/* .v-list > div  {
-  @apply !grid !grid-cols-1 sm:!grid-cols-2 lg:!grid-cols-3 xl:!grid-cols-4 gap-6 animate-fade-in !bg-red-400
-}
-
-.v-list > div > div {
-  @apply !w-[25%];
-} */

@@ -17,6 +17,7 @@ export const CountryCard = ({ country }: CountryCardProps) => {
             <div className="space-y-4">
                 {/* Country Flag Placeholder & Icon */}
                 <div className="flex items-center justify-between my-5">
+                    <img src={country.flags.svg} alt="flag" className='w-6' />
                     <MapPin className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </div>
 
