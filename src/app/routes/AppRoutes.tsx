@@ -1,51 +1,61 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Login from '@pages/Auth/Login';
 import Register from '@pages/Auth/Register';
-import { LOGIN, REGISTER, COUNTRY, DASHBOARD } from '@utils/routesUrl';
+import { LOGIN, REGISTER, COUNTRY, DASHBOARD, FAVORITES } from '@utils/routesUrl';
 import Dashboard from '@pages/Countries/Countries';
 import NotFound from '@pages/NotFound/NotFound';
 import ProtectedRoute from './ProtectedRoute';
 import CountryPage from '@pages/CountryPage/CountryPage';
+import Favorites from '@pages/Favorites/Favorites';
 
 function AppRoutes() {
   return (
-    <div>      
+    <div>
       <Routes>
         {/* Public routes - redirect to dashboard if authenticated */}
-        <Route 
-          path={LOGIN} 
+        <Route
+          path={LOGIN}
           element={
             <ProtectedRoute requireAuth={false}>
               <Login />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path={REGISTER} 
+        <Route
+          path={REGISTER}
           element={
             <ProtectedRoute requireAuth={false}>
               <Register />
             </ProtectedRoute>
-          } 
+          }
         />
-        
+
         {/* Protected routes */}
-        <Route 
-          path={DASHBOARD} 
+        <Route
+          path={DASHBOARD}
           element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        
-        <Route 
-          path={COUNTRY} 
+
+        <Route
+          path={COUNTRY}
           element={
             <ProtectedRoute>
               <CountryPage />
             </ProtectedRoute>
-          } 
+          }
+        />
+
+        <Route
+          path={FAVORITES}
+          element={
+            <ProtectedRoute>
+              <Favorites />
+            </ProtectedRoute>
+          }
         />
 
         {/* Default redirect */}

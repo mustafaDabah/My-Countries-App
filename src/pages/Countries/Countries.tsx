@@ -2,7 +2,7 @@ import { useState } from 'react'
 import CountriesList from '@components/countries/CountriesList/CountriesList'
 import { SearchAndFilter } from '@components/countries/SearchAndFilter/SearchAndFilter'
 import { CountryCardSkeleton } from '@components/countries/SkeletonCard/SkeletonCard'
-import Title from '@components/countries/Title/Title'
+import Title from '@components/ui/Title/Title'
 import useCountries from '@hooks/useCountries'
 import { useDebounce } from '@hooks/useDebounce'
 
@@ -15,7 +15,10 @@ function Countries() {
 
   return (
     <div className='container'>
-      <Title />
+      <Title  
+        title={'Explore Countries'}
+        description={' Discover information about 260 countries around the world'}
+      />
       <SearchAndFilter
         search={search}
         region={region}
