@@ -16,10 +16,10 @@ function Navbar() {
         <nav className="sticky top-0 z-20 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
             <div className="container mx-auto flex h-16 items-center justify-between ">
                 <Link to={isAuthenticated ? "/dashboard" : "/"} className="flex items-center gap-2 transition-opacity hover:opacity-80">
-                    <img className='w-2/3' src={'/assets/images/newMetrics.svg'} alt="new metrics logo" />
+                    <img className='w-[80%] md:w-2/3' src={'/assets/images/newMetrics.svg'} alt="new metrics logo" />
                 </Link>
 
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center sm:gap-2">
                     {isAuthenticated && (
                         <>
                             <Button
@@ -29,7 +29,7 @@ function Navbar() {
                                 className='relative'
                             >
                                 <Heart size={18} />
-                                <span className="text-sm font-medium">Favorites</span>
+                                <span className="text-sm font-medium hidden sm:inline">Favorites</span>
                                 {favorites.length > 0 && (
                                     <span className="absolute top-1 left-1 text-[10px] bg-red-500 text-white rounded-full w-4 flex justify-center items-center h-4">
                                         {favorites.length}

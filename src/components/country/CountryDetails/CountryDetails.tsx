@@ -28,10 +28,10 @@ const CountryDetails: React.FC = () => {
                         className="inline-flex items-center gap-2 px-3 py-2 rounded shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 transition"
                     >
                         <ArrowLeft size={16} />
-                        Back
+                        <span className='hidden md:inline'>Back</span>
                     </button>
-                    <h1 className="text-2xl font-semibold">{country.name.common}</h1>
                 </div>
+                <h1 className="text-2xl font-semibold text-center">{country.name.common}</h1>
 
                 <button
                     onClick={() => toggleFavorite(country.cca3)}
@@ -39,7 +39,7 @@ const CountryDetails: React.FC = () => {
                     className="inline-flex items-center gap-2 px-3 py-2 rounded shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:scale-105 transition"
                 >
                     <Heart size={16} className={isFavorite ? 'text-red-500' : 'text-gray-500'} />
-                    {isFavorite ? 'Unfavorite' : 'Favorite'}
+                    <span className='hidden md:inline'>{isFavorite ? 'Unfavorite' : 'Favorite'}</span>
                 </button>
             </div>
 
@@ -53,7 +53,7 @@ const CountryDetails: React.FC = () => {
                 </div>
 
                 <div>
-                    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow">
+                    <div className="bg-white dark:bg-gray-800 rounded-lg p-3 md:p-6 shadow">
                         <h2 className="text-xl font-semibold mb-4">{country.name.common}</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

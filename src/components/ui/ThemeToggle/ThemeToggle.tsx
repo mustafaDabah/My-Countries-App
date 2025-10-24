@@ -9,7 +9,7 @@ const ThemeToggle = () => {
     <Button
       variant="ghost"
       onClick={toggleTheme}
-      className="rounded-full"
+      className="rounded-full hover:!bg-transparent px-0 md:px-5"
       aria-label="Toggle theme"
       size='sm'
     >

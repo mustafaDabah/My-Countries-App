@@ -21,13 +21,11 @@ export const CountryCard = ({ country }: CountryCardProps) => {
     return (
         <Link
             to={`/country/${country.cca3}`}
-            className="group block p-6 rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-elegant hover:-translate-y-1 hover:border-primary/30 hover:bg-gradient-to-br hover:from-card hover:to-muted/20 mb-2 relative"
+            className="group block px-4 rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-elegant hover:-translate-y-1 hover:border-primary/30 hover:bg-gradient-to-br hover:from-card hover:to-muted/20 mb-2 relative"
         >
-
-
             <div className="space-y-4">
                 {/* Country Flag Placeholder & Icon */}
-                <div className="flex items-center justify-between my-5">
+                <div className="flex items-center justify-between mt-3">
                     <img src={country.flags.svg} alt="flag" className="w-6" />
                     <button
                         onClick={handleFavoriteClick}
@@ -72,7 +70,7 @@ export const CountryCard = ({ country }: CountryCardProps) => {
                 </div>
 
                 {/* Hover Indicator */}
-                <div className="pt-2">
+                <div className="pb-5">
                     <div className="w-0 group-hover:w-full h-0.5 bg-accent transition-all duration-300"></div>
                 </div>
             </div>
