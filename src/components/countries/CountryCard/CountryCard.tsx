@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 
 interface CountryCardProps {
-    country: Country
+    country: Countries
 }
 
 export const CountryCard = ({ country }: CountryCardProps) => {
@@ -11,7 +11,7 @@ export const CountryCard = ({ country }: CountryCardProps) => {
 
     return (
         <Link
-            to={`/country/${country.name.common.toLowerCase()}`}
+            to={`/country/${country.cca3}`}
             className="group block p-6 rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-elegant hover:-translate-y-1 hover:border-primary/30 hover:bg-gradient-to-br hover:from-card hover:to-muted/20 mb-2"
         >
             <div className="space-y-4">

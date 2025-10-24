@@ -1,8 +1,10 @@
-import React from 'react'
+import CountryDetails from '@components/country/CountryDetails/CountryDetails'
 
 function CountryPage() {
   return (
-    <div>CountryPage</div>
+    <div>
+      <CountryDetails />
+    </div>
   )
 }
 

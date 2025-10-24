@@ -5,6 +5,7 @@ import { LOGIN, REGISTER, COUNTRY, DASHBOARD } from '@utils/routesUrl';
 import Dashboard from '@pages/Countries/Countries';
 import NotFound from '@pages/NotFound/NotFound';
 import ProtectedRoute from './ProtectedRoute';
+import CountryPage from '@pages/CountryPage/CountryPage';
 
 function AppRoutes() {
   return (
@@ -34,6 +35,15 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        <Route 
+          path={COUNTRY} 
+          element={
+            <ProtectedRoute>
+              <CountryPage />
             </ProtectedRoute>
           } 
         />

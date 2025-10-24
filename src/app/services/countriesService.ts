@@ -26,33 +26,35 @@ const COUNTRY_DETAIL_FIELDS = [
 ].join(',');
 
 export const countriesService = {
-  async getAllCountries(): Promise<Country[]> {
-    const response = await countriesApi.get<Country[]>(`/all?fields=${COUNTRY_CARD_FIELDS}`);
+  async getAllCountries(): Promise<Countries[]> {
+    const response = await countriesApi.get<Countries[]>(`/all?fields=${COUNTRY_CARD_FIELDS}`);
     return response.data;
   },
 
-  async searchByName(name: string): Promise<Country[]> {
-    const response = await countriesApi.get<Country[]>(
+  async searchByName(name: string): Promise<Countries[]> {
+    const response = await countriesApi.get<Countries[]>(
       `/name/${name}?fields=${COUNTRY_CARD_FIELDS}`
     );
     return response.data;
   },
 
-  async filterByRegion(region: string): Promise<Country[]> {
-    const response = await countriesApi.get<Country[]>(
+  async filterByRegion(region: string): Promise<Countries[]> {
+    const response = await countriesApi.get<Countries[]>(
       `/region/${region}?fields=${COUNTRY_CARD_FIELDS}`
     );
     return response.data;
   },
 
-  async getCountryByCode(code: string): Promise<Country> {
-    const response = await countriesApi.get<Country[]>(
+  async getCountryByCode(code: string): Promise<Countries> {
+    const response = await countriesApi.get<Country>(
       `/alpha/${code}?fields=${COUNTRY_DETAIL_FIELDS}`
     );
-    return response.data[0];
+
+    console.log(response.data)
+    return response.data;
   },
 
-  async getCountriesByCodes(codes: string[]): Promise<Country[]> {
+  async getCountriesByCodes(codes: string[]): Promise<Countries[]> {
     if (codes.length === 0) return [];
 
     const promises = codes.map(code => this.getCountryByCode(code));

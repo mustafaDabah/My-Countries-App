@@ -3,7 +3,7 @@ import { CountryCard } from '../CountryCard/CountryCard'
 import { VList } from 'virtua'
 
 interface CountriesListProps {
-    countries: Country[]
+    countries: Countries[]
 }
 
 function CountriesList({ countries }: CountriesListProps) {
