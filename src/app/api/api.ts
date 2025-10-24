@@ -12,6 +12,10 @@ export const authApi = axios.create({
     },
 });
 
+export const countriesApi = axios.create({
+  baseURL: 'https://restcountries.com/v3.1',
+});
+
 authApi.interceptors.request.use(
     (config) => {
         const token = Cookies.get('auth_token');

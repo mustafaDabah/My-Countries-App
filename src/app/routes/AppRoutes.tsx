@@ -1,9 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Login from '@pages/Auth/Login';
 import Register from '@pages/Auth/Register';
-import StateInitializer from '@components/ui/AuthInitializer/StateInitializer';
 import { LOGIN, REGISTER, COUNTRY, DASHBOARD } from '@utils/routesUrl';
-import Dashboard from '@pages/Dashboard/Dashboard';
+import Dashboard from '@pages/Countries/Countries';
 import NotFound from '@pages/NotFound/NotFound';
 import ProtectedRoute from './ProtectedRoute';
 

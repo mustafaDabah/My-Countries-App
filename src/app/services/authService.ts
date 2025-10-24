@@ -13,10 +13,7 @@ export interface AuthResponse {
 
 export interface User {
   id: string;
-  email: string;
-  first_name?: string;
-  last_name?: string;
-  avatar?: string;
+  token: string;
 }
 
 class AuthService {
@@ -29,11 +26,6 @@ class AuthService {
 
   async login(credentials: AuthCredentials): Promise<AuthResponse> {
     const response = await authApi.post<AuthResponse>('/login', credentials);
-    return response.data;
-  }
-
-  async getCurrentUser(): Promise<{ data: User }> {
-    const response = await authApi.get<{ data: User }>('/users/2');
     return response.data;
   }
 
