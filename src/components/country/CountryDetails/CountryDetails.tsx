@@ -1,21 +1,21 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useCountry from '@hooks/useCountry';
-// import useFavorites from '@hooks/useFavorites';
 import { Heart, ArrowLeft } from 'lucide-react';
 import { CountryDetailSkeleton } from '@components/countries/SkeletonCard/SkeletonCard';
 import BorderCountries from '../BorderCountries/BorderCountries';
 import { formatCurrencies } from '@utils/formatCurrencies';
 import { formatLanguages } from '@utils/formatLanguages';
+import { useFavoritesStore } from '@store/useFavoritesStore';
 
 const CountryDetails: React.FC = () => {
+    const navigate = useNavigate();
     const { code } = useParams<{ code: string }>();
     const { countryQuery } = useCountry(code);
-    //   const { isFavorite, toggleFavorite } = useFavorites();
-    const navigate = useNavigate();
-
-
     const country = countryQuery.data! as Country;
+    const isFavorite = useFavoritesStore((s) => s.isFavorite(country?.cca3));
+    const toggleFavorite = useFavoritesStore((s) => s.toggleFavorite);
+
     if (countryQuery.isLoading) return <CountryDetailSkeleton />;
     if (countryQuery.isError) return <div className="container py-8 text-red-500">Failed to load country.</div>;
 
@@ -34,12 +34,12 @@ const CountryDetails: React.FC = () => {
                 </div>
 
                 <button
-                    //   onClick={() => toggleFavorite(country.cca3)}
-                    //   aria-pressed={isFavorite(country.cca3)}
+                    onClick={() => toggleFavorite(country.cca3)}
+                    aria-pressed={isFavorite}
                     className="inline-flex items-center gap-2 px-3 py-2 rounded shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:scale-105 transition"
                 >
-                    {/* <Heart size={16} className={isFavorite(country.cca3) ? 'text-red-500' : 'text-gray-500'} /> */}
-                    {/* {isFavorite(country.cca3) ? 'Unfavorite' : 'Favorite'} */}
+                    <Heart size={16} className={isFavorite ? 'text-red-500' : 'text-gray-500'} />
+                    {isFavorite ? 'Unfavorite' : 'Favorite'}
                 </button>
             </div>
 

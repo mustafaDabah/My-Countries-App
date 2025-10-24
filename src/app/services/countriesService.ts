@@ -45,16 +45,15 @@ export const countriesService = {
     return response.data;
   },
 
-  async getCountryByCode(code: string): Promise<Countries> {
+  async getCountryByCode(code: string): Promise<Country> {
     const response = await countriesApi.get<Country>(
       `/alpha/${code}?fields=${COUNTRY_DETAIL_FIELDS}`
     );
 
-    console.log(response.data)
     return response.data;
   },
 
-  async getCountriesByCodes(codes: string[]): Promise<Countries[]> {
+  async getCountriesByCodes(codes: string[]): Promise<Country[]> {
     if (codes.length === 0) return [];
 
     const promises = codes.map(code => this.getCountryByCode(code));

@@ -1,24 +1,44 @@
 import { Link } from 'react-router-dom';
-import { MapPin } from 'lucide-react';
+import { Heart } from 'lucide-react';
+import { useFavoritesStore } from '@store/useFavoritesStore';
 
 interface CountryCardProps {
-    country: Countries
+    country: Countries;
 }
 
 export const CountryCard = ({ country }: CountryCardProps) => {
-    const nativeLanguageCode = Object.keys(country.name.nativeName)[0] as keyof typeof country.name.nativeName | undefined;
+    const isFavorite = useFavoritesStore((s) => s.isFavorite(country.cca3));
+    const toggleFavorite = useFavoritesStore((s) => s.toggleFavorite);
+    
+    const nativeLanguageCode = Object.keys(country.name.nativeName ?? {})[0] as keyof typeof country.name.nativeName | undefined;
     const nativeName = nativeLanguageCode ? country.name.nativeName[nativeLanguageCode] : undefined;
+
+    const handleFavoriteClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        toggleFavorite(country.cca3);
+    };
 
     return (
         <Link
             to={`/country/${country.cca3}`}
-            className="group block p-6 rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-elegant hover:-translate-y-1 hover:border-primary/30 hover:bg-gradient-to-br hover:from-card hover:to-muted/20 mb-2"
+            className="group block p-6 rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-elegant hover:-translate-y-1 hover:border-primary/30 hover:bg-gradient-to-br hover:from-card hover:to-muted/20 mb-2 relative"
         >
+
+
             <div className="space-y-4">
                 {/* Country Flag Placeholder & Icon */}
                 <div className="flex items-center justify-between my-5">
-                    <img src={country.flags.svg} alt="flag" className='w-6' />
-                    <MapPin className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <img src={country.flags.svg} alt="flag" className="w-6" />
+                    <button
+                        onClick={handleFavoriteClick}
+                        className=" top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:scale-110 transition-all shadow-sm"
+                        aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                    >
+                        <Heart
+                            className={`h-4 w-4 transition-colors ${isFavorite ? 'fill-red-500 text-red-500' : 'text-muted-foreground group-hover:text-primary'
+                                }`}
+                        />
+                    </button>     
                 </div>
 
                 {/* Country Names */}
@@ -41,9 +61,7 @@ export const CountryCard = ({ country }: CountryCardProps) => {
                                     {nativeLanguageCode}
                                 </span>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-card-foreground">
-                                        {nativeName.common}
-                                    </p>
+                                    <p className="text-sm font-medium text-card-foreground">{nativeName.common}</p>
                                     <p className="text-xs text-muted-foreground line-clamp-1">
                                         {nativeName.official}
                                     </p>

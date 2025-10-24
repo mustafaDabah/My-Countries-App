@@ -4,9 +4,11 @@ import { Heart, LogOut } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '@hooks/useAuth';
 import { useAuthStore } from '@store/useAuthStore';
+import { useFavoritesStore } from '@store/useFavoritesStore';
 
 function Navbar() {
-    const {isAuthenticated} = useAuthStore();
+    const { isAuthenticated } = useAuthStore();
+    const { favorites } = useFavoritesStore();
     const { logout } = useAuth();
     const navigate = useNavigate();
 
@@ -24,9 +26,15 @@ function Navbar() {
                                 variant="ghost"
                                 onClick={() => navigate('/favorites')}
                                 size='sm'
+                                className='relative'
                             >
-                                <Heart className="h-4 w-4" />
-                                <span className="hidden sm:inline">Favorites</span>
+                                <Heart size={18} />
+                                <span className="text-sm font-medium">Favorites</span>
+                                {favorites.length > 0 && (
+                                    <span className="absolute top-1 left-1 text-[10px] bg-red-500 text-white rounded-full w-4 flex justify-center items-center h-4">
+                                        {favorites.length}
+                                    </span>
+                                )}
                             </Button>
                             <Button
                                 variant="ghost"
