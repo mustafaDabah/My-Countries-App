@@ -69,7 +69,7 @@ function safeRedirectToLogin() {
  */
 function parseApiError(error: AxiosError) {
   return error.response?.data || {
-    message: error?.meesage,
+    message: error?.message,
     status: error.response?.status,
   };
 }
