@@ -21,7 +21,7 @@ function useCountries({ search, region }: UseCountriesProps) {
 
             // CASE 2 search only
             if (search.trim()) {
-                return countriesService.searchByName(search);
+                return countriesService.searchByName(search.trim());
             }
 
             // CASE 3: region only
