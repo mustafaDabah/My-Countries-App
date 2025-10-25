@@ -47,7 +47,6 @@ function Login() {
                 placeholder="eve.holt@reqres.in"
                 required
                 name='email'
-                value={'eve.holt@reqres.in'}
               />
             </div>
 
@@ -60,7 +59,6 @@ function Login() {
                 required
                 name='password'
                 autoComplete="current-password"
-                value={'pistol'}
               />
             </div>
 

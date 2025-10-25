@@ -1,43 +1,81 @@
 import { LOGIN } from '@utils/routesUrl';
-import axios from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import Cookies from 'js-cookie';
 
-const API_AUTH_URL = 'https://reqres.in/api';
+const BASE_URLS = {
+  AUTH: 'https://reqres.in/api',
+  COUNTRIES: 'https://restcountries.com/v3.1',
+};
 
-export const authApi = axios.create({
-    baseURL: API_AUTH_URL,
+const AUTH_API_KEY = import.meta.env.VITE_AUTH_API_KEY;
+
+/**
+ * Create an Axios client with shared defaults and optional auth header.
+ */
+function createApiClient(
+  baseURL: string,
+  withAuth = false,
+  extraHeaders?: Record<string, string>
+): AxiosInstance {
+  const instance = axios.create({
+    baseURL,
     headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': import.meta.env.VITE_AUTH_API_KEY,
+      'Content-Type': 'application/json',
+      ...extraHeaders,
     },
-});
+  });
 
-export const countriesApi = axios.create({
-  baseURL: 'https://restcountries.com/v3.1',
-});
-
-authApi.interceptors.request.use(
-    (config) => {
+  // ✅ Attach token automatically if requested
+  if (withAuth) {
+    instance.interceptors.request.use(
+      (config) => {
         const token = Cookies.get('auth_token');
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+          config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+      },
+      (error) => Promise.reject(error)
+    );
 
-// WE DON'T HAVE THIS CASE INTO THIS PROJECT, BUT IT'S REALLY USEFUL IN CASE WE HAVE REFRESH TOKEN
-authApi.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (error.response?.status === 401) {
-            // Token expired or invalid
-            Cookies.remove('auth_token');
-            window.location.href = LOGIN;
+    // ✅ Handle auth errors globally
+    instance.interceptors.response.use(
+      (response) => response,
+      (error: AxiosError) => {
+        const status = error.response?.status;
+        if (status === 401) {
+          Cookies.remove('auth_token');
+          safeRedirectToLogin();
         }
-        return Promise.reject(error.response?.data || error);
-    }
-);
+        return Promise.reject(parseApiError(error));
+      }
+    );
+  }
+
+  return instance;
+}
+
+/**
+ * Safely redirect to login without breaking React Router SPA context.
+ */
+function safeRedirectToLogin() {
+  if (window.location.pathname !== LOGIN) {
+    window.location.href = LOGIN;
+  }
+}
+
+/**
+ * Parse and normalize error responses.
+ */
+function parseApiError(error: AxiosError) {
+  return error.response?.data || {
+    message: error?.meesage,
+    status: error.response?.status,
+  };
+}
+
+export const authApi = createApiClient(BASE_URLS.AUTH, true, {
+  'x-api-key': AUTH_API_KEY,
+});
+
+export const countriesApi = createApiClient(BASE_URLS.COUNTRIES);
