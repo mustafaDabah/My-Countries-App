@@ -7,10 +7,10 @@ module.exports = {
     container: {
       center: true,
        padding: {
-        DEFAULT: '1rem', // Default padding
-        sm: '2rem',      // Padding for small screens and up
-        lg: '4rem',      // Padding for large screens and up
-        xl: '5rem',      // Padding for extra-large screens and up
+        DEFAULT: '1rem', 
+        sm: '4rem',      
+        lg: '5rem',      
+        xl: '5rem', 
       },
       screens: {
         "2xl": "1400px",

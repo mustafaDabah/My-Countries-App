@@ -12,7 +12,7 @@ function App() {
       <ScrollToTop />
       <StateInitializer />
       <Navbar />
-      <Toaster position='top-right' duration={600} />
+      <Toaster position='top-right' duration={800} />
       <AppRoutes />
     </BrowserRouter>
   )

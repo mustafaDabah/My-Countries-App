@@ -72,3 +72,5 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+type ResponseError = { response?: { status?: number }, message?: string, code?: string }

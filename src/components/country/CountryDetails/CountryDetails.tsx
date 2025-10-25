@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useCountry from '@hooks/useCountry';
 import { Heart, ArrowLeft } from 'lucide-react';
-import { CountryDetailSkeleton } from '@components/countries/SkeletonCard/SkeletonCard';
 import BorderCountries from '../BorderCountries/BorderCountries';
 import { formatCurrencies } from '@utils/formatCurrencies';
 import { formatLanguages } from '@utils/formatLanguages';

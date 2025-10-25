@@ -32,10 +32,28 @@ export const countriesService = {
   },
 
   async searchByName(name: string): Promise<Countries[]> {
-    const response = await countriesApi.get<Countries[]>(
-      `/name/${name}?fields=${COUNTRY_CARD_FIELDS}`
-    );
-    return response.data;
+    try {
+      const response = await countriesApi.get<Country[]>(
+        `/name/${encodeURIComponent(name)}?fields=${COUNTRY_CARD_FIELDS}`
+      );
+      return response.data.map(country => ({
+        ...country,
+        capital: country.capital || []
+      }));
+    } catch (error: any) {
+      const status = error?.response?.status;
+
+      if (status === 404 || status === 400 || status === 300) {
+        return [];
+      }
+
+      if (error?.message?.includes('Network Error') || error?.code === 'ERR_BAD_REQUEST') {
+        return [];
+      }
+
+      // Re-throw genuine server errors (500+)
+      throw error;
+    }
   },
 
   async filterByRegion(region: string): Promise<Countries[]> {
