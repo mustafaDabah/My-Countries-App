@@ -19,7 +19,7 @@
 
 ## Introduction
 
-**Country Explorer** is a single-page application built with **React + TypeScript** that allows users to discover countries, search and filter them by region, view detailed country information, and mark countries as favorites. Authentication is provided via the ReqRes demo API. The app demonstrates clean architecture, good developer experience, and production-minded UX features (debounced search, persisted favorites, scroll restoration, graceful error handling, skeleton loaders, and responsive design).
+**Country Explorer** is a single-page application built with **React + TypeScript** that allows users to discover countries, search and filter them by region, view detailed country information, and mark countries as favorites. Authentication is provided via the ReqRes demo API. The app demonstrates clean architecture, good developer experience, and production-minded UX features (debounced search, persisted favorites, scroll restoration, graceful error handling, skeleton loaders, and responsive design) [preview](https://my-countries-app-one.vercel.app/).
 
 ---
 
