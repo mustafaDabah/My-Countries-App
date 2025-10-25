@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# Country Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A clean, responsive single-page application (React + TypeScript) to explore countries using the REST Countries API.  
+> Includes authentication (ReqRes), country search & filters, country detail pages, favorites (Zustand + local persistence), and production-grade UX polish.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## React Compiler
+- [Introduction](#introduction)
+- [Setup](#setup)
+- [Features](#features)
+- [Folder Structure](#folder-structure)
+- [Technical Decisions](#technical-decisions)
+- [API & Services](#api--services)
+- [UX & Accessibility](#ux--accessibility)
+- [Screenshots](#screenshots)
+- [Deployment](#deployment)
+- [Future Improvements](#future-improvements)
+- [Author](#author)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Introduction
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Country Explorer** is a single-page application built with **React + TypeScript** that allows users to discover countries, search and filter them by region, view detailed country information, and mark countries as favorites. Authentication is provided via the ReqRes demo API. The app demonstrates clean architecture, good developer experience, and production-minded UX features (debounced search, persisted favorites, scroll restoration, graceful error handling, skeleton loaders, and responsive design).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
+## Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Requirements
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js v20+ (or compatible)
+- npm or yarn
+
+### Install & Run (development)
+
+```bash
+# Clone repository
+git clone git@github.com:mustafaDabah/My-Countries-App.git
+cd my-countries-app
+
+# Install dependencies
+npm install
+
+# Create .env.local
+# At minimum:
+# VITE_AUTH_API_KEY=reqres-free-v1
+
+# Start dev server
+npm run dev
+
+# Build the app 
+npm run build 
+
+# stare preview production app 
+npm run preview
+
 ```
+--- 
+### Features
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Authentication (Register / Login) via ReqRes (JWT token stored in cookies)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Countries Dashboard: / — search (debounced), filter by region, skeleton states
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Country Details: /country/:code — full country data, border navigation
+
+- Favorites: /favorites — managed with Zustand persist (localStorage)
+
+- Smooth navigation: scroll restoration, top-scroll on forward navigation
+
+- Graceful API handling for invalid searches and ambiguous HTTP responses
